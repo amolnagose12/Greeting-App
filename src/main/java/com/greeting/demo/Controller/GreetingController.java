@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.greeting.demo.Model.Greeting;
+import com.greeting.demo.Model.User;
 import com.greeting.demo.Service.IGreetingService;
 
 @RestController
@@ -60,4 +62,9 @@ public class GreetingController {
 	public Greeting greeting() {
 	     return greetingService.greetingMessage();
 	}
+	
+	@PostMapping("/greetWithName")
+    public String greetingMessage(@RequestBody User user) {
+        return "Hello "+user.firstName+" "+user.lastName;
+    }
 }
